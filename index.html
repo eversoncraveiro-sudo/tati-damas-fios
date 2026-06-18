@@ -2297,22 +2297,21 @@
       const MAX_VISIBLE = 7;
       const HALF = 3;
 
-      /* posições angulares para cada slot de 0..6 */
+      /* ângulos e escalas por slot — tx calculado em px no apply() */
       const FAN = [
-        { rot: -21, scale: 0.72, tx: -4.2, zIndex: 1 },
-        { rot: -14, scale: 0.80, tx: -2.8, zIndex: 2 },
-        { rot:  -7, scale: 0.89, tx: -1.4, zIndex: 3 },
-        { rot:   0, scale: 1.00, tx:  0.0, zIndex: 10 },
-        { rot:   7, scale: 0.89, tx:  1.4, zIndex: 3 },
-        { rot:  14, scale: 0.80, tx:  2.8, zIndex: 2 },
-        { rot:  21, scale: 0.72, tx:  4.2, zIndex: 1 },
+        { rot: -21, scale: 0.72, txPct: -0.90, zIndex: 1 },
+        { rot: -14, scale: 0.80, txPct: -0.60, zIndex: 2 },
+        { rot:  -7, scale: 0.89, txPct: -0.30, zIndex: 3 },
+        { rot:   0, scale: 1.00, txPct:  0.00, zIndex: 10 },
+        { rot:   7, scale: 0.89, txPct:  0.30, zIndex: 3 },
+        { rot:  14, scale: 0.80, txPct:  0.60, zIndex: 2 },
+        { rot:  21, scale: 0.72, txPct:  0.90, zIndex: 1 },
       ];
 
       let center = HALF;
       let animating = false;
 
       function getSlots(c) {
-        /* retorna mapa cardIndex → slotIndex */
         const map = new Map();
         for (let s = 0; s < MAX_VISIBLE; s++) {
           const ci = ((c + s - HALF) % total + total) % total;
@@ -2321,21 +2320,23 @@
         return map;
       }
 
-      function apply(c, animate) {
-        const slots = getSlots(c);
+      function apply(c) {
+        const slots   = getSlots(c);
+        const stageW  = stage.offsetWidth;
         cards.forEach((card, i) => {
           const slot = slots.get(i);
           if (slot === undefined) {
-            card.style.opacity   = '0';
-            card.style.zIndex    = '0';
+            card.style.opacity      = '0';
+            card.style.zIndex       = '0';
             card.style.pointerEvents = 'none';
             return;
           }
-          const f = FAN[slot];
-          card.style.opacity   = '1';
-          card.style.zIndex    = f.zIndex;
+          const f  = FAN[slot];
+          const tx = f.txPct * stageW * 0.5;
+          card.style.opacity      = '1';
+          card.style.zIndex       = f.zIndex;
           card.style.pointerEvents = 'auto';
-          card.style.transform = `translateX(${f.tx}em) rotate(${f.rot}deg) scale(${f.scale})`;
+          card.style.transform    = `translateX(${tx}px) rotate(${f.rot}deg) scale(${f.scale})`;
           card.classList.toggle('is-center', slot === HALF);
         });
       }
@@ -2362,7 +2363,7 @@
       function goTo(idx) {
         if (animating) return;
         center = ((idx % total) + total) % total;
-        apply(center, true);
+        apply(center);
         updateDots();
       }
 
@@ -2386,7 +2387,8 @@
       });
 
       buildDots();
-      apply(center, false);
+      apply(center);
+      window.addEventListener('resize', () => apply(center));
     })();
 
     /* --- Carrossel de depoimentos --- */
