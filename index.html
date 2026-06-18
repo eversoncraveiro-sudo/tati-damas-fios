@@ -515,17 +515,20 @@
 
     /* carrossel */
     .servicos__track-wrap {
-      overflow: hidden;
+      overflow-x: auto;
+      overflow-y: hidden;
       width: 100%;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
     }
+    .servicos__track-wrap::-webkit-scrollbar { display: none; }
     .servicos__grid {
       display: flex;
       gap: 24px;
       padding-left: max(24px, calc((100vw - 1100px) / 2));
       padding-right: max(24px, calc((100vw - 1100px) / 2));
-    }
-    .servico-card {
-      flex: 0 0 320px;
     }
 
     /* dots */
@@ -2267,27 +2270,14 @@
 
     /* --- Carrossel de serviços --- */
     (function() {
-      const wrap   = document.getElementById('servicosTrack') && document.getElementById('servicosTrack').parentElement;
       const track  = document.getElementById('servicosTrack');
       const prev   = document.getElementById('servPrev');
       const next   = document.getElementById('servNext');
       const dotsEl = document.getElementById('servicosDots');
-      if (!track || !wrap || !prev || !next || !dotsEl) return;
+      if (!track || !prev || !next || !dotsEl) return;
 
-      /* usar scroll nativo — funciona com padding-left automaticamente */
-      wrap.style.overflowX  = 'auto';
-      wrap.style.scrollBehavior = 'smooth';
-      wrap.style.scrollbarWidth = 'none';     /* Firefox */
-      wrap.style.msOverflowStyle = 'none';    /* IE/Edge */
+      const wrap = track.parentElement;
       wrap.addEventListener('scroll', syncState);
-
-      /* esconde scrollbar webkit */
-      const styleHide = document.createElement('style');
-      styleHide.textContent = '#servicosTrack::-webkit-scrollbar,.servicos__track-wrap::-webkit-scrollbar{display:none}';
-      document.head.appendChild(styleHide);
-
-      track.style.transform = 'none';
-      track.style.transition = 'none';
 
       const items  = Array.from(track.querySelectorAll('.servico-item'));
       let current  = 0;
