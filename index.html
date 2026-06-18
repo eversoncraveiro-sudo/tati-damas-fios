@@ -524,18 +524,18 @@
     .fan-stage {
       position: relative;
       width: 100%;
-      height: 280px;
+      height: 380px;
       display: flex;
       align-items: flex-end;
       justify-content: center;
     }
-    @media (min-width: 640px)  { .fan-stage { height: 340px; } }
-    @media (min-width: 1024px) { .fan-stage { height: 420px; } }
+    @media (min-width: 640px)  { .fan-stage { height: 460px; } }
+    @media (min-width: 1024px) { .fan-stage { height: 560px; } }
 
     .fan-card {
       position: absolute;
       bottom: 0;
-      width: 160px;
+      width: 220px;
       cursor: pointer;
       transform-origin: bottom center;
       will-change: transform, opacity;
@@ -545,8 +545,8 @@
       align-items: center;
       gap: 10px;
     }
-    @media (min-width: 640px)  { .fan-card { width: 190px; } }
-    @media (min-width: 1024px) { .fan-card { width: 230px; } }
+    @media (min-width: 640px)  { .fan-card { width: 260px; } }
+    @media (min-width: 1024px) { .fan-card { width: 320px; } }
 
     .fan-card__img {
       width: 100%;
@@ -2206,13 +2206,13 @@
 
       /* posições angulares para cada slot de 0..6 */
       const FAN = [
-        { rot: -21, scale: 0.72, tx: -2.8, zIndex: 1 },
-        { rot: -14, scale: 0.80, tx: -1.9, zIndex: 2 },
-        { rot:  -7, scale: 0.89, tx: -0.9, zIndex: 3 },
+        { rot: -21, scale: 0.72, tx: -4.2, zIndex: 1 },
+        { rot: -14, scale: 0.80, tx: -2.8, zIndex: 2 },
+        { rot:  -7, scale: 0.89, tx: -1.4, zIndex: 3 },
         { rot:   0, scale: 1.00, tx:  0.0, zIndex: 10 },
-        { rot:   7, scale: 0.89, tx:  0.9, zIndex: 3 },
-        { rot:  14, scale: 0.80, tx:  1.9, zIndex: 2 },
-        { rot:  21, scale: 0.72, tx:  2.8, zIndex: 1 },
+        { rot:   7, scale: 0.89, tx:  1.4, zIndex: 3 },
+        { rot:  14, scale: 0.80, tx:  2.8, zIndex: 2 },
+        { rot:  21, scale: 0.72, tx:  4.2, zIndex: 1 },
       ];
 
       let center = HALF;
