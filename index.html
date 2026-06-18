@@ -964,13 +964,42 @@
        DEPOIMENTOS
     ============================================================ */
     .depoimentos__header { text-align: center; }
-    .depoimentos__header .section-sub { margin: 0 auto 56px; }
-    .depoimentos__grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
+    .depoimentos__header .section-sub { margin: 0 auto 48px; }
+
+    /* carrossel de depoimentos */
+    .dep-track-wrap {
+      overflow-x: auto;
+      overflow-y: hidden;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+      margin: 0 -24px;
+      padding: 0 24px;
     }
+    .dep-track-wrap::-webkit-scrollbar { display: none; }
+    .dep-track {
+      display: flex;
+      gap: 20px;
+      padding-right: 24px;
+    }
+    .dep-dots {
+      display: flex;
+      justify-content: center;
+      gap: 6px;
+      margin-top: 28px;
+    }
+    .dep-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: rgba(212,163,115,.3);
+      border: none; padding: 0;
+      cursor: pointer;
+      transition: background .2s, transform .2s;
+    }
+    .dep-dot.active { background: var(--rose); transform: scale(1.35); }
     .depoimento-card {
+      flex: 0 0 300px;
       background: var(--white);
       border-radius: var(--radius);
       padding: 32px 28px;
@@ -1486,7 +1515,6 @@
       .sobre__badge-wrap { bottom: -16px; right: 16px; }
       .beneficios__grid { grid-template-columns: repeat(2, 1fr); }
       .galeria__grid { grid-template-columns: repeat(2, 1fr); }
-      .depoimentos__grid { grid-template-columns: repeat(2, 1fr); }
       .diferenciais__grid { grid-template-columns: repeat(2, 1fr); }
       .localizacao__grid { grid-template-columns: 1fr; }
       .footer__inner { grid-template-columns: 1fr 1fr; }
@@ -1502,7 +1530,6 @@
       .antesdepois__grid { grid-template-columns: repeat(2, 1fr); }
       .beneficios__grid { grid-template-columns: 1fr; }
       .galeria__grid { grid-template-columns: 1fr; }
-      .depoimentos__grid { grid-template-columns: 1fr; }
       .diferenciais__grid { grid-template-columns: 1fr; }
       .sobre__diferenciais { grid-template-columns: 1fr; }
       .footer__inner { grid-template-columns: 1fr; }
@@ -1808,36 +1835,102 @@
         <h2 class="section-title">O que as clientes dizem</h2>
         <p class="section-sub">Avaliações reais de quem já experimentou a transformação.</p>
       </div>
-      <div class="depoimentos__grid">
+      <div class="dep-track-wrap">
+        <div class="dep-track" id="depTrack">
 
-        <div class="depoimento-card reveal">
-          <div class="stars">★★★★★</div>
-          <blockquote>"Nunca me senti tão bem com meu olhar! A Tati é muito cuidadosa, explica tudo antes e o resultado foi além do que eu esperava. Meus cílios parecem naturais mas ficaram incríveis."</blockquote>
-          <div class="depoimento-author">
-            <div class="author-avatar">A</div>
-            <div><div class="author-name">Ana Carolina M.</div><div class="author-meta">Extensão de Cílios</div></div>
+          <div class="depoimento-card">
+            <div class="stars">★★★★★</div>
+            <blockquote>"A Tati é incrível!! Uma profissional excelente, além de ser uma querida! Hiper acolhedora e delicada. Trabalho impecável, os cílios duram muito!! Super recomendo!!!"</blockquote>
+            <div class="depoimento-author">
+              <div class="author-avatar">C</div>
+              <div><div class="author-name">Cynthia K. Marques</div><div class="author-meta">Google · 5 estrelas</div></div>
+            </div>
           </div>
-        </div>
 
-        <div class="depoimento-card reveal" style="transition-delay:.1s">
-          <div class="stars">★★★★★</div>
-          <blockquote>"Fiz o design de sobrancelhas e o brow lamination juntos. Acordar toda manhã já pronta é um luxo. A Tati entende o rosto da gente e trabalha para valorizar o que já existe."</blockquote>
-          <div class="depoimento-author">
-            <div class="author-avatar">F</div>
-            <div><div class="author-name">Fernanda R.</div><div class="author-meta">Design + Brow Lamination</div></div>
+          <div class="depoimento-card">
+            <div class="stars">★★★★★</div>
+            <blockquote>"Tatiana é uma profissional exímia e excelente. Além de todos os predicados que tornam seu trabalho absoluto — seja na feitura dos cílios, na qualidade impecável, no cuidado em não deixar excesso de cola e na perfeição do resultado final."</blockquote>
+            <div class="depoimento-author">
+              <div class="author-avatar">R</div>
+              <div><div class="author-name">Renata Issa Gomes</div><div class="author-meta">Google · 5 estrelas</div></div>
+            </div>
           </div>
-        </div>
 
-        <div class="depoimento-card reveal" style="transition-delay:.2s">
-          <div class="stars">★★★★★</div>
-          <blockquote>"Fiz a regeneração com exossomos e fiquei impressionada com a diferença na pele ao redor dos olhos. Ela domina muito esse assunto. Ambiente lindo, atendimento impecável."</blockquote>
-          <div class="depoimento-author">
-            <div class="author-avatar">P</div>
-            <div><div class="author-name">Patricia S.</div><div class="author-meta">Regeneração com Exossomos</div></div>
+          <div class="depoimento-card">
+            <div class="stars">★★★★★</div>
+            <blockquote>"Uma excelente profissional, faço cílios com ela a mais de dois anos sem danos nos fios naturais, sempre entregando um trabalho de alta qualidade e quero ressaltar também o caráter humano da Lash sempre ouvindo e sendo gentil."</blockquote>
+            <div class="depoimento-author">
+              <div class="author-avatar">A</div>
+              <div><div class="author-name">Adamantha D'Arc</div><div class="author-meta">Google · 5 estrelas</div></div>
+            </div>
           </div>
-        </div>
 
+          <div class="depoimento-card">
+            <div class="stars">★★★★★</div>
+            <blockquote>"Adorei o atendimento, super atenciosa e cuidadosa! Meus cílios ficaram lindos e naturais, exatamente como eu queria."</blockquote>
+            <div class="depoimento-author">
+              <div class="author-avatar">A</div>
+              <div><div class="author-name">Adriana Moura</div><div class="author-meta">Google · 5 estrelas</div></div>
+            </div>
+          </div>
+
+          <div class="depoimento-card">
+            <div class="stars">★★★★★</div>
+            <blockquote>"Super profissional! Sempre no horário, quando viaja avisa com antecedência pra não deixar a gente na mão. Os cílios ficam lindos! Eu amo."</blockquote>
+            <div class="depoimento-author">
+              <div class="author-avatar">G</div>
+              <div><div class="author-name">Gizele Felipe R. Rovaris</div><div class="author-meta">Google · 5 estrelas</div></div>
+            </div>
+          </div>
+
+          <div class="depoimento-card">
+            <div class="stars">★★★★★</div>
+            <blockquote>"Trabalho maravilhoso, super rápida e prática no atendimento, excelente profissional que entregou exatamente o que eu queria, recomendo!"</blockquote>
+            <div class="depoimento-author">
+              <div class="author-avatar">E</div>
+              <div><div class="author-name">Eduarda Nóbrega</div><div class="author-meta">Google · 5 estrelas</div></div>
+            </div>
+          </div>
+
+          <div class="depoimento-card">
+            <div class="stars">★★★★★</div>
+            <blockquote>"Tati é incrível com o que faz! Recomendo muito ela. Bastante dedicada e excelente."</blockquote>
+            <div class="depoimento-author">
+              <div class="author-avatar">J</div>
+              <div><div class="author-name">Professora Joci de Oliveira</div><div class="author-meta">Google · 5 estrelas</div></div>
+            </div>
+          </div>
+
+          <div class="depoimento-card">
+            <div class="stars">★★★★★</div>
+            <blockquote>"Ótima profissional, super recomendo. Trabalho incrível ❤️"</blockquote>
+            <div class="depoimento-author">
+              <div class="author-avatar">M</div>
+              <div><div class="author-name">Maria Eduarda</div><div class="author-meta">Google · 5 estrelas</div></div>
+            </div>
+          </div>
+
+          <div class="depoimento-card">
+            <div class="stars">★★★★★</div>
+            <blockquote>"A Tati trabalha com excelência. Agilidade e qualidade! Recomendo!"</blockquote>
+            <div class="depoimento-author">
+              <div class="author-avatar">S</div>
+              <div><div class="author-name">Susana Becker</div><div class="author-meta">Google · 5 estrelas</div></div>
+            </div>
+          </div>
+
+          <div class="depoimento-card">
+            <div class="stars">★★★★★</div>
+            <blockquote>"Excelente profissional. Trabalho maravilhoso e rápido, retenção ótima. Recomendo."</blockquote>
+            <div class="depoimento-author">
+              <div class="author-avatar">D</div>
+              <div><div class="author-name">D M</div><div class="author-meta">Google · 5 estrelas</div></div>
+            </div>
+          </div>
+
+        </div>
       </div>
+      <div class="dep-dots" id="depDots"></div>
     </div>
   </section>
 
@@ -2294,6 +2387,51 @@
 
       buildDots();
       apply(center, false);
+    })();
+
+    /* --- Carrossel de depoimentos --- */
+    (function() {
+      const wrap  = document.querySelector('.dep-track-wrap');
+      const track = document.getElementById('depTrack');
+      const dots  = document.getElementById('depDots');
+      if (!wrap || !track || !dots) return;
+
+      const cards = Array.from(track.querySelectorAll('.depoimento-card'));
+      let current = 0;
+
+      function cardW() { return cards[0] ? cards[0].offsetWidth + 20 : 320; }
+
+      function goTo(i) {
+        current = Math.max(0, Math.min(i, cards.length - 1));
+        wrap.scrollTo({ left: current * cardW(), behavior: 'smooth' });
+        dots.querySelectorAll('.dep-dot').forEach((d, idx) => d.classList.toggle('active', idx === current));
+      }
+
+      /* dots */
+      cards.forEach((_, i) => {
+        const d = document.createElement('button');
+        d.className = 'dep-dot' + (i === 0 ? ' active' : '');
+        d.setAttribute('aria-label', 'Avaliação ' + (i + 1));
+        d.addEventListener('click', () => goTo(i));
+        dots.appendChild(d);
+      });
+
+      /* sync ao scroll */
+      wrap.addEventListener('scroll', () => {
+        const idx = Math.round(wrap.scrollLeft / cardW());
+        if (idx !== current) {
+          current = idx;
+          dots.querySelectorAll('.dep-dot').forEach((d, i) => d.classList.toggle('active', i === current));
+        }
+      });
+
+      /* swipe touch */
+      let tx0 = 0;
+      wrap.addEventListener('touchstart', e => { tx0 = e.touches[0].clientX; }, { passive: true });
+      wrap.addEventListener('touchend',   e => {
+        const dx = e.changedTouches[0].clientX - tx0;
+        if (Math.abs(dx) > 40) goTo(dx < 0 ? current + 1 : current - 1);
+      });
     })();
 
     /* --- Canvas particles --- */
