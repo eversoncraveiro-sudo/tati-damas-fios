@@ -513,106 +513,113 @@
     .servicos__arrow:disabled { opacity: .3; cursor: default; }
     .servicos__arrow svg { width: 20px; height: 20px; stroke: currentColor; fill: none; stroke-width: 2; }
 
-    /* carrossel */
-    .servicos__track-wrap {
-      overflow-x: auto;
-      overflow-y: hidden;
+    /* ── Fan Carousel ── */
+    .fan-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       width: 100%;
-      scrollbar-width: none;
-      -ms-overflow-style: none;
-      scroll-behavior: smooth;
-      -webkit-overflow-scrolling: touch;
+      padding-top: 16px;
     }
-    .servicos__track-wrap::-webkit-scrollbar { display: none; }
-    .servicos__grid {
+    .fan-stage {
+      position: relative;
+      width: 100%;
+      height: 280px;
       display: flex;
-      gap: 24px;
-      padding-left: max(24px, calc((100vw - 1100px) / 2));
-      padding-right: max(24px, calc((100vw - 1100px) / 2));
-    }
-
-    /* dots */
-    .servicos__dots {
-      display: flex;
+      align-items: flex-end;
       justify-content: center;
-      gap: 8px;
-      margin-top: 28px;
     }
-    .servicos__dot {
-      width: 8px; height: 8px;
-      border-radius: 50%;
-      background: rgba(212,163,115,.25);
-      border: none;
-      cursor: pointer;
-      transition: background .2s, transform .2s;
-      padding: 0;
-    }
-    .servicos__dot.active {
-      background: var(--rose);
-      transform: scale(1.3);
-    }
+    @media (min-width: 640px)  { .fan-stage { height: 340px; } }
+    @media (min-width: 1024px) { .fan-stage { height: 420px; } }
 
-    @media (max-width: 768px) {
-      .servicos__header { flex-direction: column; align-items: flex-start; }
-      .servicos__arrows { display: none; }
-      .servico-item { flex: 0 0 130px; }
-    }
-
-    /* item — foto quadrada + nome embaixo */
-    .servico-item {
-      flex: 0 0 160px;
+    .fan-card {
+      position: absolute;
+      bottom: 0;
+      width: 160px;
       cursor: pointer;
+      transform-origin: bottom center;
+      will-change: transform, opacity;
+      transition: transform .45s cubic-bezier(.34,1.56,.64,1), opacity .3s ease;
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 10px;
     }
-    @media (min-width: 768px) {
-      .servico-item { flex: 0 0 200px; }
-    }
-    .servico-card {
-      position: relative;
+    @media (min-width: 640px)  { .fan-card { width: 190px; } }
+    @media (min-width: 1024px) { .fan-card { width: 230px; } }
+
+    .fan-card__img {
       width: 100%;
-      aspect-ratio: 1/1;
-      border-radius: 16px;
+      aspect-ratio: 3/4;
+      border-radius: 14px;
       overflow: hidden;
-      box-shadow: 0 4px 20px rgba(43,43,43,.15);
+      box-shadow: 0 8px 32px rgba(43,43,43,.22);
+      transition: box-shadow .3s ease;
     }
-    /* foto de fundo */
-    .servico-card__bg {
-      position: absolute;
-      inset: 0;
-      background-size: cover;
-      background-position: center;
-      transition: transform .5s cubic-bezier(.25,.46,.45,.94);
+    .fan-card__img img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      pointer-events: none;
     }
-    .servico-item:hover .servico-card__bg { transform: scale(1.06); }
-
-    /* overlay suave apenas na hover */
-    .servico-card__overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(20,12,8,0);
-      transition: background .3s ease;
+    .fan-card:hover .fan-card__img {
+      box-shadow: 0 16px 48px rgba(43,43,43,.32);
     }
-    .servico-item:hover .servico-card__overlay {
-      background: rgba(20,12,8,.18);
-    }
-
-    /* nome embaixo da foto */
-    .servico-card__info {
-      width: 100%;
-      text-align: center;
-      padding: 0 4px;
-    }
-    .servico-card__info h3 {
+    .fan-card__name {
       font-family: 'Playfair Display', serif;
-      font-size: .95rem;
+      font-size: .9rem;
       font-weight: 600;
       color: var(--dark);
+      text-align: center;
       line-height: 1.3;
+      opacity: 0;
+      transition: opacity .25s ease;
     }
-    .servico-card__info p { display: none; }
+    .fan-card.is-center .fan-card__name { opacity: 1; }
+
+    /* nav dots + setas */
+    .fan-nav {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-top: 20px;
+    }
+    .fan-arrow {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(0,0,0,.12);
+      background: rgba(255,255,255,.7);
+      backdrop-filter: blur(8px);
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      color: rgba(0,0,0,.45);
+      transition: border-color .25s, color .25s, opacity .25s;
+      flex-shrink: 0;
+    }
+    .fan-arrow:hover { border-color: rgba(0,0,0,.3); color: rgba(0,0,0,.75); }
+    .fan-arrow:disabled { opacity: .3; cursor: default; }
+    .fan-arrow svg { width: 18px; height: 18px; }
+    .fan-dots {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+    }
+    .fan-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: rgba(212,163,115,.3);
+      border: none; padding: 0;
+      cursor: pointer;
+      transition: background .2s, transform .2s;
+    }
+    .fan-dot.active {
+      background: var(--rose);
+      transform: scale(1.35);
+    }
+
+    @media (max-width: 768px) {
+      .servicos__header { flex-direction: column; align-items: flex-start; }
+    }
     .btn-card {
       display: inline-flex;
       align-items: center;
@@ -1632,94 +1639,53 @@
           <h2 class="section-title">Procedimentos feitos para o seu olhar</h2>
           <p class="section-sub">Cada serviço é pensado para realçar sua beleza natural com técnicas modernas e total atenção à saúde dos seus fios.</p>
         </div>
-        <div class="servicos__arrows">
-          <button class="servicos__arrow" id="servPrev" aria-label="Anterior" disabled>
-            <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
-          </button>
-          <button class="servicos__arrow" id="servNext" aria-label="Próximo">
-            <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
-          </button>
-        </div>
       </div>
     </div><!-- /.container -->
-    <div class="servicos__track-wrap">
-      <div class="servicos__grid" id="servicosTrack">
-
-        <!-- ITEM 1 — Lashlifting -->
-        <div class="servico-item">
-          <div class="servico-card">
-            <div class="servico-card__bg" style="background-image:url('assets/images/Lashlifting.png')"></div>
-            <div class="servico-card__overlay"></div>
-          </div>
-          <div class="servico-card__info"><h3>Lashlifting</h3></div>
+    <div class="fan-section">
+      <div class="fan-stage" id="fanStage">
+        <div class="fan-card" data-name="Lashlifting">
+          <div class="fan-card__img"><img src="assets/images/Lashlifting.png" alt="Lashlifting" loading="lazy"></div>
+          <span class="fan-card__name">Lashlifting</span>
         </div>
-
-        <!-- ITEM 2 — Egípcio -->
-        <div class="servico-item">
-          <div class="servico-card">
-            <div class="servico-card__bg" style="background-image:url('assets/images/Egipcio.png')"></div>
-            <div class="servico-card__overlay"></div>
-          </div>
-          <div class="servico-card__info"><h3>Egípcio</h3></div>
+        <div class="fan-card" data-name="Egípcio">
+          <div class="fan-card__img"><img src="assets/images/Egipcio.png" alt="Egípcio" loading="lazy"></div>
+          <span class="fan-card__name">Egípcio</span>
         </div>
-
-        <!-- ITEM 3 — Egípcio 5D -->
-        <div class="servico-item">
-          <div class="servico-card">
-            <div class="servico-card__bg" style="background-image:url('assets/images/Egipcio 5D.png')"></div>
-            <div class="servico-card__overlay"></div>
-          </div>
-          <div class="servico-card__info"><h3>Egípcio 5D</h3></div>
+        <div class="fan-card" data-name="Egípcio 5D">
+          <div class="fan-card__img"><img src="assets/images/Egipcio 5D.png" alt="Egípcio 5D" loading="lazy"></div>
+          <span class="fan-card__name">Egípcio 5D</span>
         </div>
-
-        <!-- ITEM 4 — Volume 6D -->
-        <div class="servico-item">
-          <div class="servico-card">
-            <div class="servico-card__bg" style="background-image:url('assets/images/volume 6D.png');background-position:center bottom"></div>
-            <div class="servico-card__overlay"></div>
-          </div>
-          <div class="servico-card__info"><h3>Volume 6D</h3></div>
+        <div class="fan-card" data-name="Volume 6D">
+          <div class="fan-card__img"><img src="assets/images/volume 6D.png" alt="Volume 6D" loading="lazy"></div>
+          <span class="fan-card__name">Volume 6D</span>
         </div>
-
-        <!-- ITEM 5 — Volume Egípcio 5D -->
-        <div class="servico-item">
-          <div class="servico-card">
-            <div class="servico-card__bg" style="background-image:url('assets/images/Volume Egipcio 5D.png')"></div>
-            <div class="servico-card__overlay"></div>
-          </div>
-          <div class="servico-card__info"><h3>Volume Egípcio 5D</h3></div>
+        <div class="fan-card" data-name="Volume Egípcio 5D">
+          <div class="fan-card__img"><img src="assets/images/Volume Egipcio 5D.png" alt="Volume Egípcio 5D" loading="lazy"></div>
+          <span class="fan-card__name">Volume Egípcio 5D</span>
         </div>
-
-        <!-- ITEM 6 — Volume Sexy 6D -->
-        <div class="servico-item">
-          <div class="servico-card">
-            <div class="servico-card__bg" style="background-image:url('assets/images/Volume sexy 6d.jpeg')"></div>
-            <div class="servico-card__overlay"></div>
-          </div>
-          <div class="servico-card__info"><h3>Volume Sexy 6D</h3></div>
+        <div class="fan-card" data-name="Volume Sexy 6D">
+          <div class="fan-card__img"><img src="assets/images/Volume sexy 6d.jpeg" alt="Volume Sexy 6D" loading="lazy"></div>
+          <span class="fan-card__name">Volume Sexy 6D</span>
         </div>
-
-        <!-- ITEM 7 — Efeito Fox Delineado -->
-        <div class="servico-item">
-          <div class="servico-card">
-            <div class="servico-card__bg" style="background-image:url('assets/images/efeito fox delineado.jpeg')"></div>
-            <div class="servico-card__overlay"></div>
-          </div>
-          <div class="servico-card__info"><h3>Efeito Fox Delineado</h3></div>
+        <div class="fan-card" data-name="Efeito Fox Delineado">
+          <div class="fan-card__img"><img src="assets/images/efeito fox delineado.jpeg" alt="Efeito Fox Delineado" loading="lazy"></div>
+          <span class="fan-card__name">Efeito Fox Delineado</span>
         </div>
-
-        <!-- ITEM 8 — Efeito Rímel -->
-        <div class="servico-item">
-          <div class="servico-card">
-            <div class="servico-card__bg" style="background-image:url('assets/images/efeito rimel.jpeg')"></div>
-            <div class="servico-card__overlay"></div>
-          </div>
-          <div class="servico-card__info"><h3>Efeito Rímel</h3></div>
+        <div class="fan-card" data-name="Efeito Rímel">
+          <div class="fan-card__img"><img src="assets/images/efeito rimel.jpeg" alt="Efeito Rímel" loading="lazy"></div>
+          <span class="fan-card__name">Efeito Rímel</span>
         </div>
-
-      </div><!-- /.servicos__grid -->
-    </div><!-- /.servicos__track-wrap -->
-    <div class="servicos__dots" id="servicosDots"></div>
+      </div>
+      <div class="fan-nav">
+        <button class="fan-arrow" id="fanPrev" aria-label="Anterior">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <div class="fan-dots" id="fanDots"></div>
+        <button class="fan-arrow" id="fanNext" aria-label="Próximo">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+      </div>
+    </div>
   </section>
 
   <!-- ============================================================
@@ -2225,84 +2191,109 @@
       handleWrap.style.left    = 'calc(50% - 3px)';
     });
 
-    /* --- Carrossel de serviços --- */
+    /* --- Fan Carousel --- */
     (function() {
-      const track  = document.getElementById('servicosTrack');
-      const prev   = document.getElementById('servPrev');
-      const next   = document.getElementById('servNext');
-      const dotsEl = document.getElementById('servicosDots');
-      if (!track || !prev || !next || !dotsEl) return;
+      const stage  = document.getElementById('fanStage');
+      const dotsEl = document.getElementById('fanDots');
+      const btnPrev = document.getElementById('fanPrev');
+      const btnNext = document.getElementById('fanNext');
+      if (!stage || !dotsEl || !btnPrev || !btnNext) return;
 
-      const wrap = track.parentElement;
-      wrap.addEventListener('scroll', syncState);
+      const cards = Array.from(stage.querySelectorAll('.fan-card'));
+      const total = cards.length;
+      const MAX_VISIBLE = 7;
+      const HALF = 3;
 
-      const items  = Array.from(track.querySelectorAll('.servico-item'));
-      let current  = 0;
+      /* posições angulares para cada slot de 0..6 */
+      const FAN = [
+        { rot: -21, scale: 0.72, tx: -2.8, zIndex: 1 },
+        { rot: -14, scale: 0.80, tx: -1.9, zIndex: 2 },
+        { rot:  -7, scale: 0.89, tx: -0.9, zIndex: 3 },
+        { rot:   0, scale: 1.00, tx:  0.0, zIndex: 10 },
+        { rot:   7, scale: 0.89, tx:  0.9, zIndex: 3 },
+        { rot:  14, scale: 0.80, tx:  1.9, zIndex: 2 },
+        { rot:  21, scale: 0.72, tx:  2.8, zIndex: 1 },
+      ];
 
-      function itemLeft(i) {
-        return items[i] ? items[i].offsetLeft : 0;
+      let center = HALF;
+      let animating = false;
+
+      function getSlots(c) {
+        /* retorna mapa cardIndex → slotIndex */
+        const map = new Map();
+        for (let s = 0; s < MAX_VISIBLE; s++) {
+          const ci = ((c + s - HALF) % total + total) % total;
+          map.set(ci, s);
+        }
+        return map;
       }
 
-      function wrapW() { return wrap.offsetWidth; }
-
-      function visible() {
-        const iw = items[0] ? items[0].offsetWidth + 24 : 304;
-        return Math.max(1, Math.floor((wrapW()) / iw));
-      }
-
-      function maxIndex() { return Math.max(0, items.length - visible()); }
-
-      function goTo(idx) {
-        current = Math.max(0, Math.min(idx, maxIndex()));
-        wrap.scrollTo({ left: itemLeft(current), behavior: 'smooth' });
-        updateUI();
-      }
-
-      function syncState() {
-        const sl = wrap.scrollLeft;
-        let closest = 0, minDist = Infinity;
-        items.forEach((item, i) => {
-          const d = Math.abs(item.offsetLeft - sl);
-          if (d < minDist) { minDist = d; closest = i; }
-        });
-        current = closest;
-        updateUI();
-      }
-
-      function updateUI() {
-        prev.disabled = current === 0;
-        next.disabled = current >= maxIndex();
-        dotsEl.querySelectorAll('.servicos__dot').forEach((d, i) => {
-          d.classList.toggle('active', i === current);
+      function apply(c, animate) {
+        const slots = getSlots(c);
+        cards.forEach((card, i) => {
+          const slot = slots.get(i);
+          if (slot === undefined) {
+            card.style.opacity   = '0';
+            card.style.zIndex    = '0';
+            card.style.pointerEvents = 'none';
+            return;
+          }
+          const f = FAN[slot];
+          card.style.opacity   = '1';
+          card.style.zIndex    = f.zIndex;
+          card.style.pointerEvents = 'auto';
+          card.style.transform = `translateX(${f.tx}em) rotate(${f.rot}deg) scale(${f.scale})`;
+          card.classList.toggle('is-center', slot === HALF);
         });
       }
 
       function buildDots() {
         dotsEl.innerHTML = '';
-        const total = maxIndex() + 1;
-        for (let i = 0; i < total; i++) {
+        cards.forEach((_, i) => {
           const d = document.createElement('button');
-          d.className = 'servicos__dot' + (i === current ? ' active' : '');
-          d.setAttribute('aria-label', 'Ir para ' + (i + 1));
+          d.className = 'fan-dot' + (i === center ? ' active' : '');
+          d.setAttribute('aria-label', 'Serviço ' + (i + 1));
           d.addEventListener('click', () => goTo(i));
           dotsEl.appendChild(d);
-        }
+        });
       }
 
-      prev.addEventListener('click', () => goTo(current - 1));
-      next.addEventListener('click', () => goTo(current + 1));
+      function updateDots() {
+        dotsEl.querySelectorAll('.fan-dot').forEach((d, i) => {
+          d.classList.toggle('active', i === center);
+        });
+        btnPrev.disabled = false;
+        btnNext.disabled = false;
+      }
 
-      /* touch swipe (mobile sem scrollbar) */
-      let startX = 0;
-      wrap.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
-      wrap.addEventListener('touchend',   e => {
-        const dx = e.changedTouches[0].clientX - startX;
-        if (Math.abs(dx) > 40) goTo(dx < 0 ? current + 1 : current - 1);
+      function goTo(idx) {
+        if (animating) return;
+        center = ((idx % total) + total) % total;
+        apply(center, true);
+        updateDots();
+      }
+
+      btnPrev.addEventListener('click', () => goTo(center - 1));
+      btnNext.addEventListener('click', () => goTo(center + 1));
+
+      /* swipe touch */
+      let tx0 = 0;
+      stage.addEventListener('touchstart', e => { tx0 = e.touches[0].clientX; }, { passive: true });
+      stage.addEventListener('touchend',   e => {
+        const dx = e.changedTouches[0].clientX - tx0;
+        if (Math.abs(dx) > 40) goTo(dx < 0 ? center + 1 : center - 1);
+      });
+
+      /* clique num card lateral vai para ele */
+      cards.forEach((card, i) => {
+        card.addEventListener('click', () => {
+          const slots = getSlots(center);
+          if (slots.get(i) !== HALF) goTo(i);
+        });
       });
 
       buildDots();
-      goTo(0);
-      window.addEventListener('resize', () => { buildDots(); goTo(Math.min(current, maxIndex())); });
+      apply(center, false);
     })();
 
     /* --- Canvas particles --- */
