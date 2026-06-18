@@ -1176,7 +1176,6 @@
     .ad-slider {
       position: relative;
       width: 100%;
-      aspect-ratio: 4/3;
       overflow: hidden;
       border-radius: 16px;
       user-select: none;
@@ -1184,33 +1183,29 @@
       cursor: ew-resize;
       box-shadow: 0 8px 40px rgba(43,43,43,.14);
     }
-    /* ANTES — camada de baixo, sempre visível */
+    /* ANTES — camada de baixo, no fluxo normal para dar altura ao container */
     .ad-slider__before {
-      position: absolute;
-      inset: 0;
+      display: block;
       width: 100%; height: 100%;
       object-fit: cover;
-      object-position: left;
+      object-position: center;
       pointer-events: none;
       -webkit-user-drag: none;
     }
-    /* espaçador para manter a altura do slider */
-    .ad-slider::after {
-      content: '';
-      display: block;
-      width: 100%;
-    }
-    /* DEPOIS — camada de cima, clip-path: inset(0 (100-pos)% 0 0) */
+    /* DEPOIS — camada de cima em absolute, clip-path revela da esquerda */
     .ad-slider__after-wrap {
       position: absolute;
-      inset: 0;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       overflow: hidden;
       pointer-events: none;
     }
     .ad-slider__after-wrap img {
+      position: absolute;
+      top: 0; left: 0;
       width: 100%; height: 100%;
       object-fit: cover;
-      object-position: left;
+      object-position: center;
       display: block;
       -webkit-user-drag: none;
     }
