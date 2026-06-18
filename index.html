@@ -555,75 +555,64 @@
     @media (max-width: 768px) {
       .servicos__header { flex-direction: column; align-items: flex-start; }
       .servicos__arrows { display: none; }
-      .servico-item { flex: 0 0 220px; }
+      .servico-item { flex: 0 0 130px; }
     }
 
-    /* item = card Gallery4 — foto com overlay + texto interno */
+    /* item — foto quadrada + nome embaixo */
     .servico-item {
-      flex: 0 0 300px;
+      flex: 0 0 160px;
       cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
     }
-    @media (min-width: 1024px) {
-      .servico-item { flex: 0 0 340px; }
+    @media (min-width: 768px) {
+      .servico-item { flex: 0 0 200px; }
     }
     .servico-card {
       position: relative;
+      width: 100%;
+      aspect-ratio: 1/1;
       border-radius: 16px;
       overflow: hidden;
-      min-height: 27rem;
-      aspect-ratio: 5/6;
-      box-shadow: 0 8px 40px rgba(43,43,43,.18);
+      box-shadow: 0 4px 20px rgba(43,43,43,.15);
     }
     /* foto de fundo */
     .servico-card__bg {
       position: absolute;
       inset: 0;
       background-size: cover;
-      background-position: center top;
+      background-position: center;
       transition: transform .5s cubic-bezier(.25,.46,.45,.94);
     }
-    .servico-item:hover .servico-card__bg { transform: scale(1.05); }
+    .servico-item:hover .servico-card__bg { transform: scale(1.06); }
 
-    /* gradiente overlay */
+    /* overlay suave apenas na hover */
     .servico-card__overlay {
       position: absolute;
       inset: 0;
-      background: linear-gradient(
-        to top,
-        rgba(20,12,8,.92) 0%,
-        rgba(20,12,8,.55) 45%,
-        rgba(20,12,8,.0) 75%
-      );
+      background: rgba(20,12,8,0);
+      transition: background .3s ease;
+    }
+    .servico-item:hover .servico-card__overlay {
+      background: rgba(20,12,8,.18);
     }
 
-    /* texto dentro do card */
+    /* nome embaixo da foto */
     .servico-card__info {
-      position: absolute;
-      inset-inline: 0;
-      bottom: 0;
-      padding: 24px 28px;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
+      width: 100%;
+      text-align: center;
+      padding: 0 4px;
     }
     .servico-card__info h3 {
       font-family: 'Playfair Display', serif;
-      font-size: 1.15rem;
+      font-size: .95rem;
       font-weight: 600;
-      color: #fff;
-      margin-bottom: 8px;
-      text-shadow: 0 2px 8px rgba(0,0,0,.4);
+      color: var(--dark);
+      line-height: 1.3;
     }
-    .servico-card__info p {
-      font-size: .82rem;
-      color: rgba(255,255,255,.75);
-      line-height: 1.6;
-      margin-bottom: 16px;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-    }
+    .servico-card__info p { display: none; }
     .btn-card {
       display: inline-flex;
       align-items: center;
@@ -1657,107 +1646,75 @@
       <div class="servicos__grid" id="servicosTrack">
 
         <!-- ITEM 1 — Lashlifting -->
-        <div class="servico-item reveal">
+        <div class="servico-item">
           <div class="servico-card">
             <div class="servico-card__bg" style="background-image:url('assets/images/Lashlifting.png')"></div>
             <div class="servico-card__overlay"></div>
-            <div class="servico-card__info">
-              <h3>Lashlifting</h3>
-              <p>Curvatura permanente dos seus fios naturais — sem extensão, sem cola. Olhar aberto e definido por até 8 semanas.</p>
-              <a href="https://api.whatsapp.com/send?phone=5541997244190&text=Olá%20Tati!%20Quero%20saber%20mais%20sobre%20Lashlifting." class="btn btn-card" target="_blank" rel="noopener">Agendar →</a>
-            </div>
           </div>
+          <div class="servico-card__info"><h3>Lashlifting</h3></div>
         </div>
 
         <!-- ITEM 2 — Egípcio -->
-        <div class="servico-item reveal" style="transition-delay:.05s">
+        <div class="servico-item">
           <div class="servico-card">
             <div class="servico-card__bg" style="background-image:url('assets/images/Egipcio.png')"></div>
             <div class="servico-card__overlay"></div>
-            <div class="servico-card__info">
-              <h3>Egípcio</h3>
-              <p>Mapeamento que alonga o canto externo criando efeito felino e amendoado. Marcante, duradouro, feito para o seu olho.</p>
-              <a href="https://api.whatsapp.com/send?phone=5541997244190&text=Olá%20Tati!%20Quero%20saber%20mais%20sobre%20Egípcio." class="btn btn-card" target="_blank" rel="noopener">Agendar →</a>
-            </div>
           </div>
+          <div class="servico-card__info"><h3>Egípcio</h3></div>
         </div>
 
         <!-- ITEM 3 — Egípcio 5D -->
-        <div class="servico-item reveal" style="transition-delay:.1s">
+        <div class="servico-item">
           <div class="servico-card">
             <div class="servico-card__bg" style="background-image:url('assets/images/Egipcio 5D.png')"></div>
             <div class="servico-card__overlay"></div>
-            <div class="servico-card__info">
-              <h3>Egípcio 5D</h3>
-              <p>Versão em volume do efeito egípcio — leques de 5 fios com o formato felino. Olhar poderoso e escuro o dia todo.</p>
-              <a href="https://api.whatsapp.com/send?phone=5541997244190&text=Olá%20Tati!%20Quero%20saber%20mais%20sobre%20Egípcio%205D." class="btn btn-card" target="_blank" rel="noopener">Agendar →</a>
-            </div>
           </div>
+          <div class="servico-card__info"><h3>Egípcio 5D</h3></div>
         </div>
 
         <!-- ITEM 4 — Volume 6D -->
-        <div class="servico-item reveal" style="transition-delay:.15s">
+        <div class="servico-item">
           <div class="servico-card">
             <div class="servico-card__bg" style="background-image:url('assets/images/volume 6D.png');background-position:center bottom"></div>
             <div class="servico-card__overlay"></div>
-            <div class="servico-card__info">
-              <h3>Volume 6D</h3>
-              <p>Leques de 6 fios ultrafinos para cobertura total com leveza. Olhar cheio e escuro sem abrir mão do conforto.</p>
-              <a href="https://api.whatsapp.com/send?phone=5541997244190&text=Olá%20Tati!%20Quero%20saber%20mais%20sobre%20Volume%206D." class="btn btn-card" target="_blank" rel="noopener">Agendar →</a>
-            </div>
           </div>
+          <div class="servico-card__info"><h3>Volume 6D</h3></div>
         </div>
 
         <!-- ITEM 5 — Volume Egípcio 5D -->
-        <div class="servico-item reveal" style="transition-delay:.2s">
+        <div class="servico-item">
           <div class="servico-card">
             <div class="servico-card__bg" style="background-image:url('assets/images/Volume Egipcio 5D.png')"></div>
             <div class="servico-card__overlay"></div>
-            <div class="servico-card__info">
-              <h3>Volume Egípcio 5D</h3>
-              <p>Efeito egípcio com volume 5D. Canto externo alongado e fios em leque para quem quer formato, densidade e sofisticação.</p>
-              <a href="https://api.whatsapp.com/send?phone=5541997244190&text=Olá%20Tati!%20Quero%20saber%20mais%20sobre%20Volume%20Egípcio%205D." class="btn btn-card" target="_blank" rel="noopener">Agendar →</a>
-            </div>
           </div>
+          <div class="servico-card__info"><h3>Volume Egípcio 5D</h3></div>
         </div>
 
         <!-- ITEM 6 — Volume Sexy 6D -->
-        <div class="servico-item reveal" style="transition-delay:.25s">
+        <div class="servico-item">
           <div class="servico-card">
             <div class="servico-card__bg" style="background-image:url('assets/images/Volume sexy 6d.jpeg')"></div>
             <div class="servico-card__overlay"></div>
-            <div class="servico-card__info">
-              <h3>Volume Sexy 6D</h3>
-              <p>Cílios cheios, escuros e sensuais. Seis fios por natural, leveza extrema, olhar que dispensa qualquer maquiagem.</p>
-              <a href="https://api.whatsapp.com/send?phone=5541997244190&text=Olá%20Tati!%20Quero%20saber%20mais%20sobre%20Volume%20Sexy%206D." class="btn btn-card" target="_blank" rel="noopener">Agendar →</a>
-            </div>
           </div>
+          <div class="servico-card__info"><h3>Volume Sexy 6D</h3></div>
         </div>
 
         <!-- ITEM 7 — Efeito Fox Delineado -->
-        <div class="servico-item reveal" style="transition-delay:.3s">
+        <div class="servico-item">
           <div class="servico-card">
             <div class="servico-card__bg" style="background-image:url('assets/images/efeito fox delineado.jpeg')"></div>
             <div class="servico-card__overlay"></div>
-            <div class="servico-card__info">
-              <h3>Efeito Fox Delineado</h3>
-              <p>Cílios que substituem o delineador. Canto externo puxado para cima com precisão — impacto sem depender de maquiagem.</p>
-              <a href="https://api.whatsapp.com/send?phone=5541997244190&text=Olá%20Tati!%20Quero%20saber%20mais%20sobre%20Efeito%20Fox%20Delineado." class="btn btn-card" target="_blank" rel="noopener">Agendar →</a>
-            </div>
           </div>
+          <div class="servico-card__info"><h3>Efeito Fox Delineado</h3></div>
         </div>
 
         <!-- ITEM 8 — Efeito Rímel -->
-        <div class="servico-item reveal" style="transition-delay:.35s">
+        <div class="servico-item">
           <div class="servico-card">
             <div class="servico-card__bg" style="background-image:url('assets/images/efeito rimel.jpeg')"></div>
             <div class="servico-card__overlay"></div>
-            <div class="servico-card__info">
-              <h3>Efeito Rímel</h3>
-              <p>A extensão que ninguém percebe que é extensão. Fios naturais fio a fio para quem valoriza discrição e resultado autêntico.</p>
-              <a href="https://api.whatsapp.com/send?phone=5541997244190&text=Olá%20Tati!%20Quero%20saber%20mais%20sobre%20Efeito%20Rímel." class="btn btn-card" target="_blank" rel="noopener">Agendar →</a>
-            </div>
           </div>
+          <div class="servico-card__info"><h3>Efeito Rímel</h3></div>
         </div>
 
       </div><!-- /.servicos__grid -->
