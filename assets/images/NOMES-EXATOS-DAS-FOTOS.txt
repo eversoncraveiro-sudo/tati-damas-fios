@@ -1,0 +1,72 @@
+================================================================================
+  NOMES EXATOS DAS FOTOS — SALVAR COM ESSES NOMES
+  (o site já está configurado para procurar por esses nomes)
+================================================================================
+
+PASTA: 09-foto-profissional/
+  tati-damas-hero.jpg         ← foto principal da Tati (blusa branca, ambiente elegante)
+                                 aparece no HERO — seção de destaque no topo do site
+  tati-damas-sobre.jpg        ← segunda foto da Tati para a seção "Sobre a Especialista"
+                                 pode usar a mesma foto ou uma diferente
+
+PASTA: 01-extensao-de-cilios/
+  antes-depois-extensao-cilios.jpg   ← foto antes e depois de extensão de cílios
+                                        (usar a foto close do olho com cílios volumosos
+                                         ou o antes/depois com cliente na maca)
+
+PASTA: 05-lash-lifting/
+  antes-depois-lash-lifting.jpg      ← foto antes e depois de lash lifting
+                                        (usar a foto lado a lado de cílios curvados)
+
+PASTA: 06-design-sobrancelhas/
+  antes-depois-design-sobrancelhas.jpg  ← foto antes e depois de design de sobrancelhas
+                                           (usar foto de frente com sobrancelhas prontas)
+
+PASTA: 07-brow-lamination/
+  antes-depois-brow-lamination.jpg   ← foto antes e depois de brow lamination
+                                        (usar antes/depois com fios disciplinados)
+
+PASTA: 08-regeneracao-exossomos/
+  antes-depois-sobrancelha-exossomos.jpg  ← foto antes/depois sobrancelha com exossomos
+                                              (sobrancelha rala → sobrancelha farta)
+  antes-depois-capilar-exossomos.jpg      ← foto antes/depois regeneração capilar
+                                              (couro cabeludo com queda → com fios voltando)
+
+================================================================================
+  FORMATO: JPG ou PNG — renomear o arquivo antes de colocar na pasta
+  ATENÇÃO: o nome deve ser EXATAMENTE igual, incluindo os hifens
+================================================================================
+
+FOTOS IDENTIFICADAS NAS IMAGENS ENVIADAS:
+
+Para tati-damas-hero.jpg:
+  → Mulher cabelo preto longo, blusa branca cortada, apoiada em coluna dourada,
+    espelho redondo ao fundo — ambiente elegante e sofisticado ✓
+
+Para antes-depois-extensao-cilios.jpg:
+  → Antes: olho com cílios finos caídos (close muito detalhado, íris marrom)
+    Depois: mesmo olho com cílios volumosos e abertos ✓
+  → OU: foto da cliente loira/morena reclinada na maca com cílios prontos ✓
+
+Para antes-depois-lash-lifting.jpg:
+  → Antes/depois lado a lado — cílios naturais levantados e curvados ✓
+    (foto com íris marrom dourado, ângulo levemente lateral)
+
+Para antes-depois-design-sobrancelhas.jpg:
+  → Cliente morena de olhos verdes reclinada, sobrancelha desenhada + cílios ✓
+  → OU: foto de frente, olhos verdes com sobrancelhas simétricas ✓
+
+Para antes-depois-brow-lamination.jpg:
+  → Antes/depois — sobrancelha antes (fios irregulares) e depois (fios alinhados
+    para cima, aspecto farto e disciplinado) — íris verde acinzentado ✓
+
+Para antes-depois-sobrancelha-exossomos.jpg:
+  → Foto com texto "Regeneração de sobrancelhas com Exossomos" — antes sobrancelha
+    rala, depois sobrancelha farta com 3 sessões + design com cor ✓
+  → OU: antes/depois lado a lado de sobrancelha — antes escura pesada, depois
+    natural + lamination com texto "Antes" e "Depois" marcados ✓
+
+Para antes-depois-capilar-exossomos.jpg:
+  → Antes/depois couro cabeludo — foto do topo da cabeça mostrando
+    recuperação dos fios após sessões de exossomos ✓
+================================================================================
