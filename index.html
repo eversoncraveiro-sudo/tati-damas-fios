@@ -638,37 +638,91 @@
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(0,0,0,.88);
+      background: rgba(10,6,4,.92);
       z-index: 9000;
       align-items: center;
       justify-content: center;
       padding: 24px;
-      backdrop-filter: blur(6px);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
     }
-    .lightbox.open { display: flex; }
+    .lightbox.open { display: flex; animation: lbFade .22s ease-out; }
+    @keyframes lbFade { from { opacity: 0; } to { opacity: 1; } }
+
+    .lightbox__inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      max-width: min(88vw, 680px);
+      width: 100%;
+    }
     .lightbox__img {
-      max-width: min(90vw, 700px);
-      max-height: 88vh;
-      border-radius: 16px;
-      box-shadow: 0 24px 80px rgba(0,0,0,.6);
+      width: 100%;
+      max-height: 75vh;
+      border-radius: 20px;
+      box-shadow: 0 32px 96px rgba(0,0,0,.7);
       object-fit: contain;
-      animation: lbIn .25s ease-out;
+      animation: lbIn .3s cubic-bezier(.34,1.56,.64,1);
     }
     @keyframes lbIn {
-      from { transform: scale(.88); opacity: 0; }
+      from { transform: scale(.86); opacity: 0; }
       to   { transform: scale(1);   opacity: 1; }
     }
+    .lightbox__footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      gap: 16px;
+    }
+    .lightbox__nome {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #fff;
+      text-align: center;
+      flex: 1;
+    }
+    .lightbox__desc {
+      font-size: .8rem;
+      color: rgba(255,255,255,.55);
+      text-align: center;
+      margin-top: 4px;
+    }
+    .lightbox__nav {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(255,255,255,.2);
+      background: rgba(255,255,255,.08);
+      color: rgba(255,255,255,.7);
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: background .2s, border-color .2s;
+    }
+    .lightbox__nav:hover { background: rgba(255,255,255,.18); border-color: rgba(255,255,255,.4); color: #fff; }
+    .lightbox__nav svg { width: 20px; height: 20px; }
     .lightbox__close {
       position: absolute;
       top: 20px; right: 24px;
-      font-size: 2rem;
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.1);
+      border: 1px solid rgba(255,255,255,.15);
       color: #fff;
+      font-size: 1.2rem;
       cursor: pointer;
-      line-height: 1;
-      opacity: .8;
-      transition: opacity .2s;
+      display: flex; align-items: center; justify-content: center;
+      transition: background .2s;
     }
-    .lightbox__close:hover { opacity: 1; }
+    .lightbox__close:hover { background: rgba(255,255,255,.22); }
+    .lightbox__counter {
+      font-size: .75rem;
+      color: rgba(255,255,255,.4);
+      text-align: center;
+      margin-top: -8px;
+    }
 
     /* linha decorativa no hover */
     .servico-item::before {
@@ -2181,34 +2235,68 @@
       });
     });
 
-    /* --- Lightbox dos cards --- */
+    /* --- Lightbox dos cards de serviço --- */
     (function() {
       const lb      = document.getElementById('lightbox');
       const lbImg   = document.getElementById('lightboxImg');
+      const lbNome  = document.getElementById('lightboxNome');
+      const lbDesc  = document.getElementById('lightboxDesc');
+      const lbCount = document.getElementById('lightboxCounter');
       const lbClose = document.getElementById('lightboxClose');
+      const lbPrev  = document.getElementById('lightboxPrev');
+      const lbNext  = document.getElementById('lightboxNext');
+      if (!lb) return;
 
-      document.querySelectorAll('.servico-card').forEach(card => {
-        card.style.cursor = 'zoom-in';
-        card.addEventListener('click', function() {
-          const bg = card.querySelector('.servico-card__bg');
-          if (!bg) return;
-          const style = bg.style.backgroundImage;
-          const url   = style.replace(/^url\(['"]?/, '').replace(/['"]?\)$/, '');
-          lbImg.src = url;
-          lbImg.alt = card.querySelector('h3') ? card.querySelector('h3').textContent : '';
-          lb.classList.add('open');
-          document.body.style.overflow = 'hidden';
-        });
-      });
+      const cards = Array.from(document.querySelectorAll('.srv-card'));
+      let current = 0;
 
-      function closeLb() {
+      function open(idx) {
+        current = idx;
+        const card = cards[current];
+        const img  = card.querySelector('img');
+        const nome = card.querySelector('.srv-card__nome');
+        const desc = card.querySelector('.srv-card__desc');
+        lbImg.src       = img ? img.src : '';
+        lbImg.alt       = nome ? nome.textContent : '';
+        lbNome.textContent = nome ? nome.textContent : '';
+        lbDesc.textContent = desc ? desc.textContent : '';
+        lbCount.textContent = (current + 1) + ' / ' + cards.length;
+        lbPrev.disabled = current === 0;
+        lbNext.disabled = current === cards.length - 1;
+        lb.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function close() {
         lb.classList.remove('open');
         document.body.style.overflow = '';
-        lbImg.src = '';
       }
-      lbClose.addEventListener('click', closeLb);
-      lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
-      document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLb(); });
+
+      cards.forEach((card, i) => {
+        card.style.cursor = 'zoom-in';
+        card.addEventListener('click', () => open(i));
+      });
+
+      lbClose.addEventListener('click', close);
+      lb.addEventListener('click', e => { if (e.target === lb) close(); });
+      lbPrev.addEventListener('click', e => { e.stopPropagation(); if (current > 0) open(current - 1); });
+      lbNext.addEventListener('click', e => { e.stopPropagation(); if (current < cards.length - 1) open(current + 1); });
+
+      /* swipe no lightbox */
+      let tx0 = 0;
+      lbImg.addEventListener('touchstart', e => { tx0 = e.touches[0].clientX; }, { passive: true });
+      lbImg.addEventListener('touchend',   e => {
+        const dx = e.changedTouches[0].clientX - tx0;
+        if (dx > 50 && current > 0) open(current - 1);
+        if (dx < -50 && current < cards.length - 1) open(current + 1);
+      });
+
+      document.addEventListener('keydown', e => {
+        if (!lb.classList.contains('open')) return;
+        if (e.key === 'Escape')     close();
+        if (e.key === 'ArrowLeft'  && current > 0)               open(current - 1);
+        if (e.key === 'ArrowRight' && current < cards.length - 1) open(current + 1);
+      });
     })();
 
     /* --- Sliders Antes/Depois --- */
@@ -2380,9 +2468,24 @@
   </script>
 
   <!-- Lightbox -->
-  <div class="lightbox" id="lightbox">
-    <span class="lightbox__close" id="lightboxClose">&#x2715;</span>
-    <img class="lightbox__img" id="lightboxImg" src="" alt="">
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
+    <button class="lightbox__close" id="lightboxClose" aria-label="Fechar">&#x2715;</button>
+    <div class="lightbox__inner">
+      <img class="lightbox__img" id="lightboxImg" src="" alt="">
+      <div class="lightbox__counter" id="lightboxCounter"></div>
+      <div class="lightbox__footer">
+        <button class="lightbox__nav" id="lightboxPrev" aria-label="Anterior">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <div>
+          <div class="lightbox__nome" id="lightboxNome"></div>
+          <div class="lightbox__desc" id="lightboxDesc"></div>
+        </div>
+        <button class="lightbox__nav" id="lightboxNext" aria-label="Próximo">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+      </div>
+    </div>
   </div>
 
 </body>
