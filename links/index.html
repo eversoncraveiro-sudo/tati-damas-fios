@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tati Damas | Todos os Links</title>
+  <meta name="description" content="Cílios, sobrancelhas e regeneração estética com a Tati Damas em Curitiba. Acesse todos os canais." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://www.tatidamaslash.com.br/links" />
+  <link rel="icon" type="image/png" href="../assets/images/favicon.png" sizes="192x192" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../assets/images/favicon.png" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Tati Damas | Todos os Links" />
+  <meta property="og:description" content="Cílios, sobrancelhas e regeneração estética em Curitiba. Agende, conheça os tratamentos e siga nas redes." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.tatidamaslash.com.br/links" />
+  <meta property="og:locale" content="pt_BR" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      color: #2B2B2B;
+      line-height: 1.6;
+      min-height: 100svh;
+      background:
+        radial-gradient(ellipse 80% 50% at 50% -10%, rgba(212,163,115,.25) 0%, transparent 60%),
+        linear-gradient(160deg, #1f1611 0%, #2B2B2B 45%, #1a1410 100%);
+      display: flex;
+      justify-content: center;
+      padding: 64px 20px 48px;
+    }
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; display: block; }
+
+    :root {
+      --nude:    #F7EFE8;
+      --rose:    #D4A373;
+      --rose-dk: #B8845A;
+      --dark:    #2B2B2B;
+    }
+
+    .wrap {
+      width: 100%;
+      max-width: 420px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* ---------- Perfil ---------- */
+    .avatar {
+      width: 92px; height: 92px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 2px solid rgba(212,163,115,.5);
+      box-shadow: 0 8px 32px rgba(0,0,0,.4);
+      margin-bottom: 18px;
+    }
+    .avatar img { width: 100%; height: 100%; object-fit: cover; }
+
+    .brand-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.7rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 4px;
+      text-align: center;
+    }
+    .brand-name span { color: var(--rose); font-style: italic; }
+
+    .brand-tag {
+      font-size: .78rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.55);
+      margin-bottom: 28px;
+      text-align: center;
+    }
+
+    /* ---------- Cards de link ---------- */
+    .links {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .link-card {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      width: 100%;
+      padding: 16px 20px;
+      border-radius: 16px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(212,163,115,.25);
+      backdrop-filter: blur(6px);
+      transition: transform .2s ease, background .2s ease, border-color .2s ease;
+    }
+    .link-card:hover, .link-card:active {
+      transform: translateY(-2px);
+      background: rgba(212,163,115,.14);
+      border-color: rgba(212,163,115,.55);
+    }
+
+    .link-card__icon {
+      width: 44px; height: 44px;
+      border-radius: 12px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--rose);
+      color: #fff;
+      overflow: hidden;
+    }
+    .link-card__icon svg { width: 22px; height: 22px; }
+    .link-card__icon img { width: 100%; height: 100%; object-fit: cover; }
+
+    .link-card__text { flex: 1; min-width: 0; }
+    .link-card__title {
+      font-size: .95rem;
+      font-weight: 600;
+      color: #fff;
+    }
+    .link-card__sub {
+      font-size: .76rem;
+      color: rgba(255,255,255,.5);
+      margin-top: 1px;
+    }
+
+    .link-card__arrow {
+      flex-shrink: 0;
+      width: 18px; height: 18px;
+      color: rgba(255,255,255,.35);
+      transition: transform .2s ease;
+    }
+    .link-card:hover .link-card__arrow { transform: translateX(3px); color: var(--rose); }
+
+    /* destaque pro primeiro link (site principal) */
+    .link-card--principal {
+      background: linear-gradient(135deg, rgba(212,163,115,.22), rgba(212,163,115,.06));
+      border-color: rgba(212,163,115,.5);
+    }
+
+    /* ---------- Divisor de seção ---------- */
+    .section-label {
+      width: 100%;
+      text-align: center;
+      font-size: .72rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.4);
+      margin: 26px 0 14px;
+      position: relative;
+    }
+
+    /* ---------- Footer ---------- */
+    .footer {
+      margin-top: 40px;
+      text-align: center;
+      font-size: .72rem;
+      color: rgba(255,255,255,.3);
+    }
+    .footer a { color: var(--rose); }
+  </style>
+</head>
+<body>
+
+  <div class="wrap">
+
+    <div class="avatar">
+      <img src="../assets/images/Tati.png" alt="Tati Damas" />
+    </div>
+    <h1 class="brand-name">Tati Damas<span>.</span>Fios</h1>
+    <p class="brand-tag">Cílios · Sobrancelhas · Regeneração Estética — Curitiba</p>
+
+    <div class="links">
+
+      <a class="link-card link-card--principal" href="https://www.tatidamaslash.com.br" target="_blank" rel="noopener">
+        <div class="link-card__icon">
+          <img src="../assets/images/favicon.png" alt="Tati Damas Lash" />
+        </div>
+        <div class="link-card__text">
+          <div class="link-card__title">Site Oficial — Cílios e Sobrancelhas</div>
+          <div class="link-card__sub">Conheça os serviços e agende</div>
+        </div>
+        <svg class="link-card__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+      </a>
+
+      <a class="link-card link-card--principal" href="https://www.exoprimebytatidamas.com.br" target="_blank" rel="noopener">
+        <div class="link-card__icon">
+          <img src="../assets/images/logo-td-favicon.png" alt="ExoPrime" />
+        </div>
+        <div class="link-card__text">
+          <div class="link-card__title">ExoPrime — Regeneração com Exossomos</div>
+          <div class="link-card__sub">Tratamento exclusivo para sobrancelhas</div>
+        </div>
+        <svg class="link-card__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+      </a>
+
+      <div class="section-label">Fale e siga</div>
+
+      <a class="link-card" href="https://api.whatsapp.com/send?phone=5541997244190&text=Olá%20Tati!%20Gostaria%20de%20agendar%20um%20atendimento." target="_blank" rel="noopener">
+        <div class="link-card__icon" style="background:#25D366;">
+          <svg viewBox="0 0 24 24" fill="currentColor" style="color:#fff;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        </div>
+        <div class="link-card__text">
+          <div class="link-card__title">WhatsApp</div>
+          <div class="link-card__sub">(41) 99724-4190</div>
+        </div>
+        <svg class="link-card__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+      </a>
+
+      <a class="link-card" href="https://www.instagram.com/tatidamas.lash/" target="_blank" rel="noopener">
+        <div class="link-card__icon" style="background:linear-gradient(135deg,#f58529,#dd2a7b,#8134af);">
+          <svg viewBox="0 0 24 24" fill="currentColor" style="color:#fff;"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        </div>
+        <div class="link-card__text">
+          <div class="link-card__title">Instagram</div>
+          <div class="link-card__sub">@tatidamas.lash</div>
+        </div>
+        <svg class="link-card__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+      </a>
+
+      <a class="link-card" href="https://www.google.com/maps/search/?api=1&query=R.+Via+Veneto,+1900,+Santa+Felicidade,+Curitiba,+PR" target="_blank" rel="noopener">
+        <div class="link-card__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <div class="link-card__text">
+          <div class="link-card__title">Localização</div>
+          <div class="link-card__sub">R. Via Veneto, 1900 — Santa Felicidade, Curitiba</div>
+        </div>
+        <svg class="link-card__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+      </a>
+
+    </div>
+
+    <div class="footer">
+      Site desenvolvido pela <a href="#" rel="noopener">CraveMind</a>
+    </div>
+
+  </div>
+
+</body>
+</html>
