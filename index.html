@@ -2228,9 +2228,9 @@
       }
 
       wrap.addEventListener('mousedown',  e => { dragging = true; setPos(getX(e)); });
-      wrap.addEventListener('touchstart', e => { dragging = true; setPos(getX(e)); }, { passive: true });
+      wrap.addEventListener('touchstart', e => { dragging = true; setPos(getX(e)); }, { passive: false });
       window.addEventListener('mousemove', e => { if (dragging) setPos(getX(e)); });
-      window.addEventListener('touchmove', e => { if (dragging) setPos(getX(e)); }, { passive: true });
+      window.addEventListener('touchmove', e => { if (dragging) { e.preventDefault(); setPos(getX(e)); } }, { passive: false });
       window.addEventListener('mouseup',  () => dragging = false);
       window.addEventListener('touchend', () => dragging = false);
 
@@ -2349,11 +2349,11 @@
       }
 
       slider.addEventListener('mousedown',  function(e) { e.preventDefault(); dragging = true;  slider.classList.add('ad-slider--dragging'); update(e.clientX); });
-      slider.addEventListener('touchstart', function(e) { dragging = true; slider.classList.add('ad-slider--dragging'); update(e.touches[0].clientX); }, { passive: true });
+      slider.addEventListener('touchstart', function(e) { dragging = true; slider.classList.add('ad-slider--dragging'); update(e.touches[0].clientX); }, { passive: false });
 
       window.addEventListener('mousemove', function(e) { if (dragging) update(e.clientX); });
       window.addEventListener('mouseup',   function()  { dragging = false; slider.classList.remove('ad-slider--dragging'); });
-      slider.addEventListener('touchmove', function(e) { if (dragging) update(e.touches[0].clientX); }, { passive: true });
+      slider.addEventListener('touchmove', function(e) { if (dragging) { e.preventDefault(); update(e.touches[0].clientX); } }, { passive: false });
       slider.addEventListener('touchend',  function()  { dragging = false; slider.classList.remove('ad-slider--dragging'); });
 
       /* inicializa em 50% — antes à esquerda, depois à direita */
